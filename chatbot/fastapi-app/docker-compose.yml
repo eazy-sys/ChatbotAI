@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  api:
+    build: .
+    ports:
+      - "8080:8000"
+    environment:
+      - OPENAI_API_KEY=BNF10GhIkIM5G3Zf1pkqF4OVy3XNh5ihALbxHNzZjGYPlGFxW5gKJQQJ99BBACHYHv6XJ3w3AAAAACOGzp5z
+      - AZURE_OPENAI_ENDPOINT=https://junio-m7nldf0u-eastus2.cognitiveservices.azure.com/
+      - DEPLOYMENT_NAME=gpt-4 

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chatbot-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: chatbot
+  template:
+    metadata:
+      labels:
+        app: chatbot
+    spec:
+      containers:
+        - name: chatbot
+          image: juniochatbotacr.azurecr.io/fastapi-app:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openai-secret
+                  key: OPENAI_API_KEY
+            - name: AZURE_OPENAI_ENDPOINT
+              value: "https://junio-m7nldf0u-eastus2.cognitiveservices.azure.com/"
+            - name: DEPLOYMENT_NAME
+              value: "gpt-4"
